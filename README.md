@@ -22,6 +22,8 @@ A fast image/video downloader from Pexels.com written in Golang
 
 ```shell script
 make 
+# Install to GOPATH /bin
+make install
 ```
 
 2. **Init with API KEY**
