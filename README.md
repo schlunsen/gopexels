@@ -7,7 +7,7 @@ A fast image/video downloader from Pexels.com written in Golang
 
 ![](./logo.png)
 
-&nbsp;
+
 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/schlunsen/gopexels)](https://goreportcard.com/report/github.com/schlunsen/gopexels)
@@ -36,10 +36,16 @@ gopexels init # Enter you key in the CLI
 gopexels --threads 10 SEARCH_QUERY 
 ```
 
+3. **Run Photo Frame**
+Starts a REST api and a webview with a slideshow of photos
+```shell script
+gopexels photoframe SEARCH_QUERY
+```
+
 4. **Test**
 
 ```shell script
-make test
+go test -v ./tests/*
 ```
 
 _______
