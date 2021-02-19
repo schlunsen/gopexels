@@ -15,8 +15,10 @@ func StartServer(query string) {
 	})
 	r.GET("/api", func(c *gin.Context) {
 		client := pexels.NewClient(viper.GetString("APIKEY"))
-
-		images := client.SimpleQuery(query, 5)
+		images := client.PopularService.GetPopular()
+		if true {
+			images = client.SimpleQuery(query, 10)
+		}
 		c.JSON(200, gin.H{
 			"images": images,
 		})

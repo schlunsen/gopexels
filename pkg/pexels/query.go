@@ -35,7 +35,7 @@ func (s *PexelAPI) SimpleQuery(query string, perPage int) []string {
 	for _, photo := range photos.MustArray() {
 		ndata, _ := photo.(map[string]interface{})
 		n2data, _ := ndata["src"].(map[string]interface{})
-		results = append(results, fmt.Sprintf("%s", n2data["original"]))
+		results = append(results, fmt.Sprintf("%s", n2data["large2x"]))
 	}
 
 	return results

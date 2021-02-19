@@ -2,6 +2,7 @@ package pexels
 
 import (
 	"fmt"
+	"log"
 	"testing"
 
 	"github.com/schlunsen/gopexels/pkg/pexels"
@@ -27,7 +28,18 @@ func Test_Query(t *testing.T) {
 func Test_SimpleQuery(t *testing.T) {
 	setup()
 	client := pexels.NewClient(test_apiKey)
-	results := client.SimpleQuery("horse", 10)
-	fmt.Println(results)
+	numberOfResults := 10
+	results := client.SimpleQuery("horse", numberOfResults)
 
+	// Assert results equals requested
+	if len(results) != numberOfResults {
+		log.Fatalln("Error with results. Got ", len(results), "Expected ", numberOfResults)
+	}
+}
+
+func Test_GetPopular(t *testing.T) {
+	setup()
+	client := pexels.NewClient(test_apiKey)
+	results := client.PopularService.GetPopular()
+	fmt.Println(results)
 }

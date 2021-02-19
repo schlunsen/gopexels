@@ -24,16 +24,14 @@ import (
 // photoframeCmd represents the photoframe command
 var photoframeCmd = &cobra.Command{
 	Use:   "photoframe",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Starts a slideshow",
+	Long:  `Starts a slideshow`,
 	Run: func(cmd *cobra.Command, args []string) {
+		query := ""
+		if len(args) > 0 {
+			query = args[0]
+		}
 
-		query := args[0]
 		debug := false
 		w := webview.New(debug)
 
@@ -41,7 +39,7 @@ to quickly create a Cobra application.`,
 		w.SetTitle("Minimal webview example")
 		w.SetSize(1980, 1080, webview.HintNone)
 
-		w.Navigate("http://localhost:8080/start/trans")
+		w.Navigate("http://localhost:8080/start")
 		go server.StartServer(query)
 		w.Run()
 
