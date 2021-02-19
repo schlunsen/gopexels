@@ -16,8 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/schlunsen/gopexels/pkg/server"
 	"github.com/spf13/cobra"
 	"github.com/webview/webview"
@@ -34,8 +32,9 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("photoframe called")
-		debug := true
+
+		query := args[0]
+		debug := false
 		w := webview.New(debug)
 
 		defer w.Destroy()
@@ -43,7 +42,7 @@ to quickly create a Cobra application.`,
 		w.SetSize(1980, 1080, webview.HintNone)
 
 		w.Navigate("http://localhost:8080/start/trans")
-		go server.StartServer()
+		go server.StartServer(query)
 		w.Run()
 
 	},

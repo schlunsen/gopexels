@@ -52,7 +52,7 @@ var downloadCmd = &cobra.Command{
 		total := NUMBER_OF_FILES
 		results := client.SimpleQuery(query, total)
 
-		photos := results.Get("photos")
+		photos := results
 
 		threads := NUMBER_OF_THEADS
 
@@ -80,10 +80,8 @@ var downloadCmd = &cobra.Command{
 			}()
 		}
 
-		for _, photo := range photos.MustArray() {
-			ndata, _ := photo.(map[string]interface{})
-			n2data, _ := ndata["src"].(map[string]interface{})
-			downloadChan <- fmt.Sprintf("%s", n2data["original"])
+		for _, photo := range photos {
+			downloadChan <- photo
 
 		}
 

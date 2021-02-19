@@ -1,7 +1,7 @@
 package pexels
 
 import (
-	"log"
+	"fmt"
 	"testing"
 
 	"github.com/schlunsen/gopexels/pkg/pexels"
@@ -28,13 +28,6 @@ func Test_SimpleQuery(t *testing.T) {
 	setup()
 	client := pexels.NewClient(test_apiKey)
 	results := client.SimpleQuery("horse", 10)
-	photos := results.Get("photos")
-
-	for i, photo := range photos.MustArray() {
-		ndata, _ := photo.(map[string]interface{})
-		n2data, _ := ndata["src"].(map[string]interface{})
-		log.Println(i, n2data["original"])
-
-	}
+	fmt.Println(results)
 
 }

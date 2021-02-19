@@ -70,7 +70,6 @@ class Sketch {
   }
   settings() {
     let that = this;
-    if(this.debug) this.gui = new dat.GUI();
     this.settings = {progress:0.5};
     // if(this.debug) this.gui.add(this.settings, "progress", 0, 1, 0.01);
 

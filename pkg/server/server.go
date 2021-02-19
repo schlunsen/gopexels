@@ -1,8 +1,12 @@
 package server
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/schlunsen/gopexels/pkg/pexels"
+	"github.com/spf13/viper"
+)
 
-func StartServer() {
+func StartServer(query string) {
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -10,7 +14,9 @@ func StartServer() {
 		})
 	})
 	r.GET("/api", func(c *gin.Context) {
-		images := [3]string{"/start/trans/img/img11.jpg", "/start/trans/img/img12.jpg", "/start/trans/img/img13.jpg"}
+		client := pexels.NewClient(viper.GetString("APIKEY"))
+
+		images := client.SimpleQuery(query, 5)
 		c.JSON(200, gin.H{
 			"images": images,
 		})

@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>HORSE</h1>
-</body>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gopexels Photo Frame</title>
+
+    <link rel="stylesheet" type="text/css" href="/start/css/base.css" />
+  </head>
+
+  <body class="demo-1 cda-removeleft cda-naked cda-noimg">
+    <main>
+      <div id="content" class="content">
+        <div id="slider" data-images="[]" data-displacement=""></div>
+      </div>
+    </main>
+    <script src="/start/js/three.js"></script>
+    <script src="/start/js/gsap.js"></script>
+    <script src="/start/js/sketch.js"></script>
+    <script src="/start/js/demo1.js"></script>
+    <script>
+      setTimeout(async () => {
+        let response = await fetch("/api/");
+        let json = await response.json();
+        window.sketch.setImages(json.images);
+        window.sketch.play();
+      }, 200);
+
+      setInterval(() => {
+        console.log("HEY");
+        document.querySelector("#slider").click();
+      }, 3500);
+    </script>
+  </body>
 </html>

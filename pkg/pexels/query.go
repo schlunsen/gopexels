@@ -24,10 +24,19 @@ func (s *PexelAPI) Query(queryObj map[string][]string) *simplejson.Json {
 	return j
 }
 
-func (s *PexelAPI) SimpleQuery(query string, perPage int) *simplejson.Json {
+func (s *PexelAPI) SimpleQuery(query string, perPage int) []string {
 	queryMap := map[string][]string{
 		"Query":   {query},
 		"PerPage": {fmt.Sprintf("%d", perPage)},
 	}
-	return s.Query(queryMap)
+	result := s.Query(queryMap)
+	var results []string
+	photos := result.Get("photos")
+	for _, photo := range photos.MustArray() {
+		ndata, _ := photo.(map[string]interface{})
+		n2data, _ := ndata["src"].(map[string]interface{})
+		results = append(results, fmt.Sprintf("%s", n2data["original"]))
+	}
+
+	return results
 }
