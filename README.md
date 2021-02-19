@@ -39,7 +39,7 @@ gopexels --threads 10 SEARCH_QUERY
 4. **Test**
 
 ```shell script
-go test -v ./tests/*
+make test
 ```
 
 _______
